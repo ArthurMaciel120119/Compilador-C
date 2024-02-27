@@ -1,0 +1,13 @@
+# Makefile
+
+final: lex.yy.c parser.tab.c parser.tab.h
+    gcc lex.yy.c parser.tab.c -o final
+
+lex.yy.c: lexical.l parser.tab.h
+    lex lexical.l
+
+parser.tab.c parser.tab.h: parser.y
+    bison -dl parser.y
+
+clean:
+    rm -f lex.yy.c parser.tab.c parser.tab.h final
